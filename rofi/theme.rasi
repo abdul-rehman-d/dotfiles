@@ -1,0 +1,55 @@
+* {
+    /* Dracula theme colour palette */
+    drac-bgd: #282a36;
+    drac-cur: #44475a;
+    drac-fgd: #f8f8f2;
+    drac-cmt: #6272a4;
+    drac-cya: #8be9fd;
+    drac-grn: #50fa7b;
+    drac-ora: #ffb86c;
+    drac-pnk: #ff79c6;
+    drac-pur: #bd93f9;
+    drac-red: #ff5555;
+    drac-yel: #f1fa8c;
+
+    background-color:	@drac-bgd;
+    border-color:	@drac-fgd;
+    text-color:		@drac-fgd;
+    font:		"Times New Roman 12";
+}
+window {
+    anchor:	north;
+    location:	north;
+    width:	100%;
+    padding:	4px;
+    children:	[ horibox ];
+}
+horibox {
+    orientation:	horizontal;
+    children:		[ prompt, entry, listview ];
+}
+listview {
+    layout:	horizontal;
+    spacing:	5px;
+    lines:	100;
+}
+prompt {
+    padding: 2px 4px 2px 0px;
+}
+entry {
+    expand:	false;
+    width:	10em;
+    padding: 2px 0px;
+}
+element {
+    padding:	2px 4px;
+}
+element selected {
+    background-color:	@drac-pnk;
+    text-color:		@drac-bgd;
+}
+element-text, element-icon {
+    background-color:	inherit;
+    text-color:		inherit;
+}
+

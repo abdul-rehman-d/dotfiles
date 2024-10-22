@@ -146,4 +146,6 @@ configuration {
   }
 }
 
-@theme "/usr/share/rofi/themes/dmenu.rasi"
+@import "theme"
+@theme "theme"
+
