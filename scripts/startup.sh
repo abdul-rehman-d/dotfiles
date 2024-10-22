@@ -25,10 +25,6 @@ function setup_workflow {
   code
   sleep 2
 
-  xdotool key super+6
-  virtualbox &
-  sleep 2
-
   xdotool key super+7
   firefox -P Personal --new-instance &
   sleep 2
