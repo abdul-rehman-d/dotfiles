@@ -12,6 +12,7 @@ order += "wireless wlp2s0"
 order += "memory"
 order += "load"
 order += "tztime local"
+order += "battery all"
 order += "volume master"
 
 wireless wlp2s0 {
@@ -38,6 +39,10 @@ memory {
 
 disk "/" {
         format = "%free"
+}
+
+battery all {
+	format = "%status %remaining (%percentage)"
 }
 
 volume master {
