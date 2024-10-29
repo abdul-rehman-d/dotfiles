@@ -1,0 +1,6 @@
+# ignore tmux plugins
+tmux/plugins
+
+# ignore pycache
+qtile/__pycache__
+
