@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+if ! [[ $# -eq 1 ]]; then
+    exit 1
+fi
+
+current=$(xrandr --verbose | grep -i brightness | awk '{print $2}')
+
+if [[ $1 == "down" ]]; then
+    new=$(echo "$current - 0.1" | bc)
+    if (( $(echo "$new < 0.0" | bc -l) )); then
+	    new=0.0
+    fi
+elif [[ $1 == "up" ]]; then
+    new=$(echo "$current + 0.1" | bc)
+    if (( $(echo "$new > 1.0" | bc -l) )); then
+	    new=1.0
+    fi
+else
+    exit 1
+fi
+
+xrandr --output $(xrandr --verbose | grep -i primary | awk '{print $1}') --brightness $new
+notify-send -t 750 "brightness: $new"
+
