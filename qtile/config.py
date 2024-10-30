@@ -338,6 +338,7 @@ screens = [
                     background=colors["pink"],
                     foreground=colors["bg"],
                     fmt="VOL: {}",
+                    get_volume_command="pactl get-sink-volume @DEFAULT_SINK@ | awk '{print $5}' | head -n 1",
                 ),
                 spacer,
                 widget.Battery(
