@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+
+if ! [[ $# -eq 1 ]]; then
+    exit 1
+fi
+
+get_volume () {
+    pactl get-sink-volume @DEFAULT_SINK@ | awk '{print $5}' | head -n 1
+}
+
+get_is_muted () {
+    if pacmd list-sinks | grep "muted: yes" > /dev/null; then
+	echo 'muted'
+    else
+	echo 'unmuted'
+    fi
+}
+
+get_is_mic_muted () {
+    if pacmd list-sources | grep "muted: yes" > /dev/null; then
+	echo 'muted'
+    else
+	echo 'unmuted'
+    fi
+}
+
+current=$(get_volume)
+
+if [[ $1 == "down" ]]; then
+    pactl set-sink-volume @DEFAULT_SINK@ -10%
+    notify-send -t 750 "volume: $(get_volume)"
+elif [[ $1 == "up" ]]; then
+    pactl set-sink-volume @DEFAULT_SINK@ +10%
+    notify-send -t 750 "volume: $(get_volume)"
+elif [[ $1 == "mute" ]]; then
+    pactl set-sink-mute @DEFAULT_SINK@ toggle
+    notify-send -t 750 "volume: $(get_is_muted)"
+elif [[ $1 == "mute-mic" ]]; then
+    pactl set-source-mute @DEFAULT_SOURCE@ toggle
+    notify-send -t 750 "mic: $(get_is_mic_muted)"
+else
+    exit 1
+fi
+
