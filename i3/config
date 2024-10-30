@@ -46,7 +46,7 @@ bindsym $mod+Return exec kitty
 bindsym $mod+Shift+q kill
 
 # rofi on super key
-bindcode 133 --release exec "rofi -modi drun,run -show drun"
+bindsym $mod+d exec "rofi -modi drun,run -show drun"
 
 # flameshot
 bindsym Print exec "flameshot gui"
