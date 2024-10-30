@@ -108,13 +108,13 @@ bindsym $mod+a focus parent
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1:www"
 set $ws2 "2:dev"
-set $ws3 "3:term"
-set $ws4 "4:slack"
-set $ws5 "5:gimp"
-set $ws6 "6:vlc"
-set $ws7 "7:w-www"
-set $ws8 "8:misc"
-set $ws9 "9:torrent"
+set $ws3 "3:teams"
+set $ws4 "4:files"
+set $ws5 "5:code"
+set $ws6 "6:p-www"
+set $ws7 "7:wa"
+set $ws8 "8:music"
+set $ws9 "9:misc"
 set $ws10 "10:idk"
 
 # switch to workspace
