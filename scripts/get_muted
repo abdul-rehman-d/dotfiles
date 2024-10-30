@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+if pactl get-sink-mute @DEFAULT_SINK@ | grep "yes" > /dev/null; then
+	echo 'muted'
+else
+	echo ''
+fi
+

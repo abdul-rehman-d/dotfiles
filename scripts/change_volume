@@ -9,7 +9,7 @@ get_volume () {
 }
 
 get_is_muted () {
-    if pacmd list-sinks | grep "muted: yes" > /dev/null; then
+    if pactl get-sink-mute @DEFAULT_SINK@ | grep "yes" > /dev/null; then
 	echo 'muted'
     else
 	echo 'unmuted'
@@ -17,7 +17,7 @@ get_is_muted () {
 }
 
 get_is_mic_muted () {
-    if pacmd list-sources | grep "muted: yes" > /dev/null; then
+    if pactl get-source-mute @DEFAULT_SOURCE@ | grep "yes" > /dev/null; then
 	echo 'muted'
     else
 	echo 'unmuted'

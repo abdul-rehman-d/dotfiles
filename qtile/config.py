@@ -338,7 +338,12 @@ screens = [
                     background=colors["pink"],
                     foreground=colors["bg"],
                     fmt="VOL: {}",
-                    get_volume_command="pactl get-sink-volume @DEFAULT_SINK@ | awk '{print $5}' | head -n 1",
+                    mute_foreground=colors["comment"],
+                    unmute_format="{volume}%",
+                    mute_format="M {volume}%",
+                    get_volume_command=home + "/dotfiles/scripts/get_volume",
+                    check_mute_command=home + "/dotfiles/scripts/get_muted",
+                    check_mute_string="muted",
                 ),
                 spacer,
                 widget.Battery(
