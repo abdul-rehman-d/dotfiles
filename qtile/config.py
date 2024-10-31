@@ -6,17 +6,48 @@ from libqtile import bar, layout, widget
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile import hook
-from libqtile.widget import backlight
 
 mod = "mod4"
 terminal = "kitty"
 home = os.path.expanduser("~")
 
 
+def addOpacityToHexColors(color: str, opacity: float = 1.0) -> str:
+    if len(color) != 7 or not color.startswith("#"):
+        return color
+    alpha = int(opacity * 255)
+    return color + f"{alpha:02X}"
+
+
+colors = {
+    "bg": "#282A36",
+    "current": "#44475A",
+    "fg": "#F8F8F2",
+    "comment": "#6272A4",
+    "cyan": "#8BE9FD",
+    "green": "#50FA7B",
+    "orange": "#FFB86C",
+    "pink": "#FF79C6",
+    "purple": "#BD93F9",
+    "red": "#FF5555",
+    "yellow": "#F1FA8C",
+}
+
+tranparentishBG = addOpacityToHexColors(colors["bg"], 0.8)
+transparent = "#00000000"
+
+
 @hook.subscribe.startup_once
 def autostart():
     script = os.path.expanduser("~/dotfiles/scripts/autostart.sh")
     subprocess.run([script])
+
+
+@hook.subscribe.client_focus
+def set_hint(window):
+    window.window.set_property(
+        "IS_FLOATING", str(window.floating), type="STRING", format=8
+    )
 
 
 keys = [
@@ -206,6 +237,7 @@ for i, group in enumerate(groups):
 
 layouts = [
     layout.Columns(
+        border_focus=colors["purple"],
         border_focus_stack=["#d75f5f", "#8f3d3d"],
         border_width=1,
         border_on_single=True,
@@ -225,31 +257,6 @@ layouts = [
     # layout.VerticalTile(),
     # layout.Zoomy(),
 ]
-
-
-def addOpacityToHexColors(color: str, opacity: float = 1.0) -> str:
-    if len(color) != 7 or not color.startswith("#"):
-        return color
-    alpha = int(opacity * 255)
-    return color + f"{alpha:02X}"
-
-
-colors = {
-    "bg": "#282A36",
-    "current": "#44475A",
-    "fg": "#F8F8F2",
-    "comment": "#6272A4",
-    "cyan": "#8BE9FD",
-    "green": "#50FA7B",
-    "orange": "#FFB86C",
-    "pink": "#FF79C6",
-    "purple": "#BD93F9",
-    "red": "#FF5555",
-    "yellow": "#F1FA8C",
-}
-
-tranparentishBG = addOpacityToHexColors(colors["bg"], 0.8)
-transparent = "#00000000"
 
 widget_defaults = dict(
     font="mono",
