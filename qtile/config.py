@@ -143,6 +143,12 @@ keys = [
     Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
     Key([mod], "d", lazy.spawn("rofi -modi drun,run -show drun"), desc="Spawn rofi"),
     Key([mod, "shift"], "Escape", lazy.spawn("systemctl suspend"), desc="suspend"),
+    Key(
+        [mod, "shift"],
+        "Return",
+        lazy.spawn(home + "/dotfiles/scripts/tmux-sessionizer"),
+        desc="tmux sessionizer",
+    ),
     Key([], "Print", lazy.spawn("flameshot gui"), desc="suspend"),
     Key(
         [mod, "shift"],
