@@ -22,6 +22,7 @@ window {
     location:	north;
     width:	100%;
     padding:	4px;
+    margin:	4px;
     children:	[ horibox ];
 }
 horibox {
@@ -45,7 +46,7 @@ element {
     padding:	2px 4px;
 }
 element selected {
-    background-color:	@drac-pnk;
+    background-color:	@drac-pur;
     text-color:		@drac-bgd;
 }
 element-text, element-icon {
