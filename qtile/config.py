@@ -1,6 +1,7 @@
 import os
 import subprocess
 import re
+from pathlib import Path
 
 from libqtile import bar, layout, widget
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
@@ -295,84 +296,94 @@ def get_only_win_name(name: str) -> str:
     return name[match.start() + 1 :].strip()
 
 
+widgets = [
+    widget.Chord(
+        chords_colors={
+            "launch": ("#ff0000", "#ffffff"),
+        },
+        name_transform=lambda name: name.upper(),
+    ),
+    sep,
+    widget.GroupBox(
+        highlight_method="line",
+        inactive=addOpacityToHexColors(colors["fg"], 0.5),
+        highlight_color=transparent,
+        this_current_screen_border=colors["purple"],
+    ),
+    sep,
+    widget.Prompt(),
+    widget.WindowName(
+        format="{name}",
+        parse_text=get_only_win_name,
+        foreground=colors["comment"],
+    ),
+    spacer,
+    widget.CurrentLayoutIcon(
+        scale=0.65,
+        fmt="Layout: {}",
+        background=colors["current"],
+        padding=10,
+    ),
+    spacer,
+    widget.Clock(
+        format="%a %Y-%m-%d %I:%M %p",
+        background=colors["cyan"],
+        foreground=colors["bg"],
+    ),
+    spacer,
+    widget.Memory(
+        background=colors["green"],
+        foreground=colors["bg"],
+        measure_mem="G",
+        fmt="MEM: {}",
+        format="{MemUsed:.2f}{mm}/{MemTotal:.2f}{mm}",
+    ),
+    spacer,
+    widget.CPU(
+        background=colors["orange"],
+        foreground=colors["bg"],
+        fmt="CPU: {}",
+        format="{freq_current}GHz {load_percent}%",
+    ),
+    spacer,
+    widget.Volume(
+        background=colors["pink"],
+        foreground=colors["bg"],
+        fmt="VOL: {}",
+        mute_foreground=colors["comment"],
+        unmute_format="{volume}%",
+        mute_format="M {volume}%",
+        get_volume_command=home + "/dotfiles/scripts/get_volume",
+        check_mute_command=home + "/dotfiles/scripts/get_muted",
+        check_mute_string="muted",
+    ),
+    spacer,
+]
+if not any(Path("some/path/here").iterdir()):
+    widgets.extend(
+        [
+            widget.Battery(
+                format="BAT: {char}{percent:2.0%}",
+                discharge_char="",
+                charge_char="^ ",
+                empty_char="x ",
+                background=colors["yellow"],
+                foreground=colors["bg"],
+            ),
+            spacer,
+        ]
+    )
+
+widgets.append(
+    widget.Systray(
+        background=colors["bg"],
+    )
+)
+
 screens = [
     Screen(
         top=bar.Bar(
-            [
-                widget.Chord(
-                    chords_colors={
-                        "launch": ("#ff0000", "#ffffff"),
-                    },
-                    name_transform=lambda name: name.upper(),
-                ),
-                sep,
-                widget.GroupBox(
-                    highlight_method="line",
-                    inactive=addOpacityToHexColors(colors["fg"], 0.5),
-                    highlight_color=transparent,
-                    this_current_screen_border=colors["purple"],
-                ),
-                sep,
-                widget.Prompt(),
-                widget.WindowName(
-                    format="{name}",
-                    parse_text=get_only_win_name,
-                    foreground=colors["comment"],
-                ),
-                spacer,
-                widget.CurrentLayoutIcon(
-                    scale=0.65,
-                    fmt="Layout: {}",
-                    background=colors["current"],
-                    padding=10,
-                ),
-                spacer,
-                widget.Clock(
-                    format="%a %Y-%m-%d %I:%M %p",
-                    background=colors["cyan"],
-                    foreground=colors["bg"],
-                ),
-                spacer,
-                widget.Memory(
-                    background=colors["green"],
-                    foreground=colors["bg"],
-                    measure_mem="G",
-                    fmt="MEM: {}",
-                    format="{MemUsed:.2f}{mm}/{MemTotal:.2f}{mm}",
-                ),
-                spacer,
-                widget.CPU(
-                    background=colors["orange"],
-                    foreground=colors["bg"],
-                    fmt="CPU: {}",
-                    format="{freq_current}GHz {load_percent}%",
-                ),
-                spacer,
-                widget.Volume(
-                    background=colors["pink"],
-                    foreground=colors["bg"],
-                    fmt="VOL: {}",
-                    mute_foreground=colors["comment"],
-                    unmute_format="{volume}%",
-                    mute_format="M {volume}%",
-                    get_volume_command=home + "/dotfiles/scripts/get_volume",
-                    check_mute_command=home + "/dotfiles/scripts/get_muted",
-                    check_mute_string="muted",
-                ),
-                spacer,
-                widget.Battery(
-                    format="BAT: {char}{percent:2.0%}",
-                    discharge_char="",
-                    charge_char="^ ",
-                    empty_char="x ",
-                    background=colors["yellow"],
-                    foreground=colors["bg"],
-                ),
-                spacer,
-                widget.Systray(
-                    background=colors["bg"],
-                ),
-            ],
+            widgets,
             26,
             background=transparent,
             foreground=colors["fg"],
