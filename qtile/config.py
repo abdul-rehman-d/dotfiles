@@ -359,7 +359,7 @@ widgets = [
     ),
     spacer,
 ]
-if not any(Path("some/path/here").iterdir()):
+if any(Path("/sys/class/power_supply/").iterdir()):
     widgets.extend(
         [
             widget.Battery(
