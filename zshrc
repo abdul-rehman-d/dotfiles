@@ -106,7 +106,7 @@ export PATH="$PATH:/opt/nvim-linux64/bin"
 export PATH="$PATH:$HOME/.local/bin"
 
 export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
-export PATH=/home/symits/.local/kitty.app/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/opt/nvim-linux64/bin:/home/symits/.local/bin:/home/symits/n/bin:/opt/nvim-linux64/bin:/home/symits/.local/bin:/usr/local/go/bin
+export PATH=/home/symits/.local/kitty.app/bin:$PATH
 
 # pnpm
 export PNPM_HOME="/home/symits/.local/share/pnpm"
