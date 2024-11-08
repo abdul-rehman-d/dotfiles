@@ -463,9 +463,21 @@ require("lazy").setup({
 			--  - settings (table): Override the default settings passed when initializing the server.
 			--        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
 			local servers = {
+				-- These are my servers;
+				-- uncomment for langs which are installed otherwise would give error
+				-- GOLANG
 				-- gopls = {},
 
-				ts_ls = {},
+				-- JS/TS
+				-- eslint = {},
+				-- prettier = {},
+				-- tailwindcss = {},
+				-- prismals = {},
+				-- ts_ls = {},
+
+				-- PYTHON
+				-- black = {},
+				-- pyright = {},
 
 				lua_ls = {
 					settings = {
