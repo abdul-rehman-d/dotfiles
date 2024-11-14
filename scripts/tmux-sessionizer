@@ -13,6 +13,22 @@ fi
 selected_name=$(basename "$selected" | tr . _)
 tmux_running=$(pgrep tmux)
 
+pwd=$(pwd)
+cd $selected
+
+if ! [[ -d $selected/.git ]]; then
+    if [[ $(ls -1 . | wc -l) -gt 0 ]]; then
+        worktree=$( ls -1 . | rofi -dmenu -p "Which worktree")
+        if [[ -z $worktree ]]; then
+            exit 0
+        fi
+        selected=$selected/$worktree
+        selected_name=`echo $selected_name\_\_$worktree`
+    fi
+fi
+
+cd $pwd
+
 if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
     kitty --hold tmux new-session -s $selected_name -c $selected
     exit 0
