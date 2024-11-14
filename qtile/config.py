@@ -37,6 +37,19 @@ colors = {
 tranparentishBG = addOpacityToHexColors(colors["bg"], 0.8)
 transparent = "#00000000"
 
+sticky_windows = []
+
+
+@lazy.function
+def toggle_sticky_windows(qtile, window=None):
+    if window is None:
+        window = qtile.current_screen.group.current_window
+    if window in sticky_windows:
+        sticky_windows.remove(window)
+    else:
+        sticky_windows.append(window)
+    return window
+
 
 @hook.subscribe.startup_once
 def autostart():
@@ -49,6 +62,19 @@ def set_hint(window):
     window.window.set_property(
         "IS_FLOATING", str(window.floating), type="STRING", format=8
     )
+
+
+@hook.subscribe.setgroup
+def move_sticky_windows():
+    for window in sticky_windows:
+        window.togroup()
+    return
+
+
+@hook.subscribe.client_killed
+def remove_sticky_windows(window):
+    if window in sticky_windows:
+        sticky_windows.remove(window)
 
 
 keys = [
@@ -199,6 +225,12 @@ keys = [
         [],
         "XF86AudioMicMute",
         lazy.spawn(home + "/dotfiles/scripts/change_volume mute-mic"),
+    ),
+    Key(
+        [mod],
+        "s",
+        toggle_sticky_windows(),
+        desc="Toggle state of sticky for current window",
     ),
 ]
 
