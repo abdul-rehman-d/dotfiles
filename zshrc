@@ -108,6 +108,10 @@ export PATH="$PATH:$HOME/.local/bin"
 export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
 export PATH=/home/symits/.local/kitty.app/bin:$PATH
 
+export PATH=$PATH:/usr/local/go/bin
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
+
 # pnpm
 export PNPM_HOME="/home/symits/.local/share/pnpm"
 case ":$PATH:" in
@@ -134,3 +138,6 @@ tw=35:\
 tx=36:"
 
 alias xl='exa -lag --icons --color=always'
+
+# Turso
+export PATH="$PATH:/home/symits/.turso"
