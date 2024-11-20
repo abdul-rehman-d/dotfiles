@@ -172,12 +172,18 @@ keys = [
     Key([mod], "v", lazy.spawn("copyq menu"), desc="Spawn copyq"),
     Key([mod, "shift"], "Escape", lazy.spawn("systemctl suspend"), desc="suspend"),
     Key(
+        [mod],
+        "Escape",
+        lazy.spawn(f"i3lock -i {home + '/dotfiles/assets/lock-screen.png'}"),
+        desc="lock screen",
+    ),
+    Key(
         [mod, "shift"],
         "Return",
         lazy.spawn(home + "/dotfiles/scripts/tmux-sessionizer"),
         desc="tmux sessionizer",
     ),
-    Key([], "Print", lazy.spawn("flameshot gui"), desc="suspend"),
+    Key([], "Print", lazy.spawn("flameshot gui"), desc="flameshot gui"),
     Key(
         [mod, "shift"],
         "e",

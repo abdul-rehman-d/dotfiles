@@ -7,5 +7,5 @@ blueman-applet &
 volumeicon &
 flameshot &
 copyq &
-xss-lock --transfer-sleep-lock -- i3lock -c "#282A36" --nofork &
+xss-lock --transfer-sleep-lock -- i3lock -i $HOME/dotfiles/assets/lock-screen.png --nofork &
 
