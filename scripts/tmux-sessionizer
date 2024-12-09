@@ -18,12 +18,16 @@ cd $selected
 
 if ! [[ -d $selected/.git ]]; then
     if [[ $(ls -1 . | wc -l) -gt 0 ]]; then
-        worktree=$( ls -1 . | rofi -dmenu -p "Which worktree")
-        if [[ -z $worktree ]]; then
-            exit 0
+        echo $selected/$(ls -a -1 . | head -1)/.git
+        first_dir=$(ls -1 . | head -1)
+        if ls -a -1 $selected/$first_dir | grep .git$; then
+            worktree=$( ls -1 . | rofi -dmenu -p "Which worktree")
+            if [[ -z $worktree ]]; then
+                exit 0
+            fi
+            selected=$selected/$worktree
+            selected_name=`echo $selected_name\_\_$worktree`
         fi
-        selected=$selected/$worktree
-        selected_name=`echo $selected_name\_\_$worktree`
     fi
 fi
 
