@@ -34,7 +34,7 @@ colors = {
     "yellow": "#F1FA8C",
 }
 
-tranparentishBG = addOpacityToHexColors(colors["bg"], 0.8)
+# tranparentishBG = addOpacityToHexColors(colors["bg"], 0.8)
 transparent = "#00000000"
 
 sticky_windows = []
@@ -308,18 +308,18 @@ widget_defaults = dict(
     font="mono",
     fontsize=14,
     padding=2,
-    background=tranparentishBG,
+    background=colors["bg"],
 )
 extension_defaults = widget_defaults.copy()
 
 spacer = widget.Spacer(
     length=10,
-    background=tranparentishBG,
+    background=colors["bg"],
 )
 sep = widget.Sep(
     linewidth=2,
     padding=8,
-    background=tranparentishBG,
+    background=colors["bg"],
     foreground=colors["purple"],
     rounded=True,
 )
@@ -345,7 +345,7 @@ widgets = [
     widget.GroupBox(
         highlight_method="line",
         inactive=addOpacityToHexColors(colors["fg"], 0.5),
-        highlight_color=transparent,
+        highlight_color=colors["bg"],
         this_current_screen_border=colors["purple"],
     ),
     sep,
@@ -413,9 +413,7 @@ if any(Path("/sys/class/power_supply/").iterdir()):
     )
 
 widgets.append(
-    widget.Systray(
-        background=colors["bg"],
-    )
+    widget.Systray(),
 )
 
 screens = [
@@ -423,12 +421,12 @@ screens = [
         top=bar.Bar(
             widgets,
             26,
-            background=transparent,
+            background=colors["bg"],
             foreground=colors["fg"],
             margin=2,
             padding=3,
             border_width=[5, 0, 5, 0],
-            border_color=tranparentishBG,
+            border_color=colors["bg"],
         ),
         # x11_drag_polling_rate = 60,
     ),
