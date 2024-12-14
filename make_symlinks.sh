@@ -9,4 +9,6 @@ ln -s $HOME/dotfiles/picom $HOME/.config/picom
 ln -s $HOME/dotfiles/kitty $HOME/.config/kitty
 ln -s $HOME/dotfiles/rofi $HOME/.config/rofi
 ln -s $HOME/dotfiles/zshrc $HOME/.zshrc
+ln -s $HOME/dotfiles/gitconfig $HOME/.gitconfig
+ln -s $HOME/dotfiles/gitconfig-work $HOME/.gitconfig-work
 

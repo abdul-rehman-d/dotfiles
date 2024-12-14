@@ -1,0 +1,5 @@
+[user]
+	email = "abdulrehman.daniyal@digitalnomadicsolutions.com"
+	name = "Abdul Rehman"
+[core]
+	sshCommand = ssh -i ~/.ssh/git-work -F /dev/null

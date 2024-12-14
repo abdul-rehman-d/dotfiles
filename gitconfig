@@ -1,0 +1,13 @@
+[user]
+	email = "ar618211@gmail.com"
+	name = "Abdul Rehman"
+[push]
+	autoSetupRemote = true
+[http]
+	postBuffer = 157286400
+[pull]
+	rebase = false
+[core]
+	sshCommand = ssh -i ~/.ssh/git-personal -F /dev/null
+[includeIf "gitdir:~/dev/work/"]
+	path = ~/.gitconfig-work
