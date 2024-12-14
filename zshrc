@@ -106,14 +106,15 @@ export PATH="$PATH:/opt/nvim-linux64/bin"
 export PATH="$PATH:$HOME/.local/bin"
 
 export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
-export PATH=/home/symits/.local/kitty.app/bin:$PATH
+
+export PATH=$HOME/.local/kitty.app/bin:$PATH
 
 export PATH=$PATH:/usr/local/go/bin
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 
 # pnpm
-export PNPM_HOME="/home/symits/.local/share/pnpm"
+export PNPM_HOME="$HOME/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
@@ -140,4 +141,4 @@ tx=36:"
 alias xl='exa -lag --icons --color=always'
 
 # Turso
-export PATH="$PATH:/home/symits/.turso"
+export PATH="$PATH:$HOME/.turso"
