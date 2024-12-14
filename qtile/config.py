@@ -344,7 +344,8 @@ widgets = [
     sep,
     widget.GroupBox(
         highlight_method="line",
-        inactive=addOpacityToHexColors(colors["fg"], 0.5),
+        # inactive=addOpacityToHexColors(colors["fg"], 0.5),
+        inactive=colors["comment"],
         highlight_color=colors["bg"],
         this_current_screen_border=colors["purple"],
     ),
