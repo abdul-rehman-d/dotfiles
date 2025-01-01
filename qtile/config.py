@@ -290,7 +290,11 @@ layouts = [
         margin=2,
         margin_on_single=10,
     ),
-    layout.Max(),
+    layout.Max(
+        border_focus=colors["purple"],
+        border_width=1,
+        margin=10,
+    ),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
