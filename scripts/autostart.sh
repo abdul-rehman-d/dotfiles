@@ -12,7 +12,6 @@ picom -c &
 feh --bg-fill $HOME/dotfiles/wallpapers/$(get_rand_wallpaper)
 nm-applet &
 blueman-applet &
-volumeicon &
 flameshot &
 copyq &
 xss-lock --transfer-sleep-lock -- i3lock -i $HOME/dotfiles/assets/lock-screen.png --nofork &

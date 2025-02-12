@@ -295,6 +295,7 @@ layouts = [
         border_width=1,
         margin=10,
     ),
+    layout.Floating(),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),

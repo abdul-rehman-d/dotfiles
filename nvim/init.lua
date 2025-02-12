@@ -469,8 +469,7 @@ require("lazy").setup({
 				-- gopls = {},
 
 				-- JS/TS
-				-- eslint = {},
-				-- prettier = {},
+				-- biome = {},
 				-- tailwindcss = {},
 				-- prismals = {},
 				-- ts_ls = {},
@@ -552,7 +551,6 @@ require("lazy").setup({
 			formatters_by_ft = {
 				lua = { "stylua" },
 				python = { "isort", "black", stop_after_first = true },
-				javascript = { "prettierd", "prettier", stop_after_first = true },
 				-- Conform can also run multiple formatters sequentially
 				-- python = { "isort", "black" },
 				--
