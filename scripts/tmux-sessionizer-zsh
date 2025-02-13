@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+
+if [[ $# -eq 1 ]]; then
+    selected=$1
+else
+    selected=$( ( find ~/dev/games/ ~/dev/personal ~/dev/work -mindepth 1 -maxdepth 1 -type d; echo $HOME/dotfiles ) | fzf)
+fi
+
+if [[ -z $selected ]]; then
+    exit 0
+fi
+
+selected_name=$(basename "$selected" | tr . _)
+
+pwd=$(pwd)
+cd $selected
+
+if ! [[ -d $selected/.git ]]; then
+    if [[ $(ls -1 . | wc -l) -gt 0 ]]; then
+        first_dir=$(ls -1 . | head -1)
+        if ls -a -1 $selected/$first_dir | grep .git$; then
+            worktree=$( ls -1 . | fzf)
+            if [[ -z $worktree ]]; then
+                exit 0
+            fi
+            selected=$selected/$worktree
+            selected_name=`echo $selected_name\_\_$worktree`
+        fi
+    fi
+fi
+
+cd $pwd
+
+if ! tmux has-session -t=$selected_name 2> /dev/null; then
+    tmux new-session -ds $selected_name -c $selected
+fi
+
+if [[ -z $TMUX ]]; then
+    tmux attach
+else
+    tmux switch-client -t $selected_name
+fi
+

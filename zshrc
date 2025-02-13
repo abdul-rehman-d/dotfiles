@@ -142,3 +142,7 @@ alias xl='exa -lag --icons --color=always'
 
 # Turso
 export PATH="$PATH:$HOME/.turso"
+
+function run-tmux-sessionizer { ~/dotfiles/scripts/tmux-sessionizer-zsh; zle redisplay; }
+zle -N run-tmux-sessionizer
+bindkey '^f' run-tmux-sessionizer
