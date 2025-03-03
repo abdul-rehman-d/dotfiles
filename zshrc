@@ -142,3 +142,10 @@ alias xl='exa -lag --icons --color=always'
 
 # Turso
 export PATH="$PATH:$HOME/.turso"
+
+# bun completions
+[ -s "/home/madman/.bun/_bun" ] && source "/home/madman/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
