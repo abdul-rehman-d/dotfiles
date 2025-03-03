@@ -1,5 +1,11 @@
 [user]
 	email = "abdulrehman.daniyal@digitalnomadicsolutions.com"
 	name = "Abdul Rehman"
+[push]
+	autoSetupRemote = true
+[http]
+	postBuffer = 157286400
+[pull]
+	rebase = false
 [core]
 	sshCommand = ssh -i ~/.ssh/git-work -F /dev/null
