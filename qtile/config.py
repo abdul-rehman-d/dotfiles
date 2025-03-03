@@ -184,6 +184,7 @@ keys = [
         desc="tmux sessionizer",
     ),
     Key([], "Print", lazy.spawn("flameshot gui"), desc="flameshot gui"),
+    Key([mod, "shift"], "s", lazy.spawn("flameshot gui"), desc="flameshot gui"),
     Key(
         [mod, "shift"],
         "e",
