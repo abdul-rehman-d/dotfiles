@@ -6,3 +6,5 @@ qtile/__pycache__
 
 *.bak
 
+nvim/lazy-lock.json
+
