@@ -153,3 +153,12 @@ bindkey '^f' run-tmux-sessionizer
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+
+
+
+#####################
+# ALWAYS AT THE END #
+#####################
+eval "$(oh-my-posh init zsh --config $HOME/dotfiles/ohmyposh.toml)"
+

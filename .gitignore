@@ -4,3 +4,5 @@ tmux/plugins
 # ignore pycache
 qtile/__pycache__
 
+*.bak
+
