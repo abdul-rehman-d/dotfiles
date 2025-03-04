@@ -8,7 +8,7 @@ final_space = true
   background = 'transparent'
 
 [transient_prompt]
-  template = '{{ .PWD }} {{if gt .Code 0}}<red>❯</red>{{else}}<green>❯</green>{{end}} '
+  template = '{{ .Folder }} {{if gt .Code 0}}<red>❯</red>{{else}}<green>❯</green>{{end}} '
   background = 'transparent'
   foreground = 'blue'
 
