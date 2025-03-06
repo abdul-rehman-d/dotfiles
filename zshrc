@@ -143,9 +143,13 @@ alias xl='exa -lag --icons --color=always'
 # Turso
 export PATH="$PATH:$HOME/.turso"
 
-function run-tmux-sessionizer { ~/dotfiles/scripts/tmux-sessionizer-zsh; zle redisplay; }
+function run-tmux-sessionizer {
+  ~/dotfiles/scripts/tmux-sessionizer-zsh;
+  zle redisplay;
+}
 zle -N run-tmux-sessionizer
 bindkey '^f' run-tmux-sessionizer
+. $HOME/.cargo/env
 
 # bun completions
 [ -s "/home/madman/.bun/_bun" ] && source "/home/madman/.bun/_bun"
@@ -155,10 +159,7 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 
-
-
 #####################
 # ALWAYS AT THE END #
 #####################
 eval "$(oh-my-posh init zsh --config $HOME/dotfiles/ohmyposh.toml)"
-
