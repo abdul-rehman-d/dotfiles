@@ -14,3 +14,5 @@ curl -s https://ohmyposh.dev/install.sh | bash -s
 
 rm $HOME/.zshrc
 ln -s $HOME/dotfiles/zshrc $HOME/.zshrc
+
+sudo chsh -s $(which zsh) $USER
