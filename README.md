@@ -9,12 +9,11 @@ If you dont have `curl` installed, install it first:
 sudo apt install curl -y
 ```
 
-If you want cli-only installation, run:
-```bash
-curl -L https://raw.githubusercontent.com/abdul-rehman-d/dotfiles/refs/heads/main/install.sh | bash -s -- --cli-only
-```
-
-Or else, run:
 ```bash
 curl -L https://raw.githubusercontent.com/abdul-rehman-d/dotfiles/refs/heads/main/install.sh | bash
 ```
+
+## Todo
+- [ ] Fix git and ssh configuration
+- [ ] Change login shell
+- [ ] CLI Only functionality
