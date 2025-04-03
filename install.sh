@@ -1,12 +1,23 @@
 #!/bin/bash
 
+
+echo "#########################"
+echo "## Dotfiles Installer ##"
+echo "#########################"
+
+echo "################### UPDATE SYSTEM ###################"
 sudo apt update
 sudo apt upgrade -y
 
-sudo apt install git curl -y
+echo "################### INSTALLING DEPENDENCIES ###################"
+sudo apt install git -y
 
+echo "################### CLONING DOTFILES ###################"
 git clone https://github.com/abdul-rehman-d/dotfiles.git ~/dotfiles
 
+mkdir -p ~/.config
+
+echo "################### SETTING UP CLI SOFTWARE ###################"
 # iterate over ~/dotfiles/setups/cli/
 for file in ~/dotfiles/setups/cli/*; do
 	# check if file is a script
@@ -21,7 +32,7 @@ for file in ~/dotfiles/setups/cli/*; do
 done
 
 if [[ "$1" != "--cli-only" ]]; then
-	echo "Running GUI setup"
+	echo "################### SETTING UP GUI SOFTWARE ###################"
 	# iterate over ~/dotfiles/setups/gui/
 	for file in ~/dotfiles/setups/gui/*; do
 		# check if file is a script
