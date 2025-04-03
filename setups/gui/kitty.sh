@@ -17,4 +17,5 @@ sed -i "s|Exec=kitty|Exec=$HOME/.local/kitty.app/bin/kitty|g" "$HOME/.local/shar
 # Ensure the desktop entry is available in the system menu
 update-desktop-database "$HOME/.local/share/applications"
 
+rm -rf $HOME/.config/kitty
 ln -s $HOME/dotfiles/kitty $HOME/.config/kitty
