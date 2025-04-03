@@ -102,46 +102,35 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-export PATH="$PATH:/opt/nvim-linux64/bin"
+
+if [ -d $HOME/.nvim ]; then
+  export PATH="$PATH:$HOME/.nvim/bin"
+fi
 export PATH="$PATH:$HOME/.local/bin"
 
-export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
+export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"
 
 export PATH=$HOME/.local/kitty.app/bin:$PATH
 
-export PATH=$PATH:/usr/local/go/bin
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH/bin
+if [ -d /usr/local/go ]; then
+  export PATH=$PATH:/usr/local/go/bin
+  export GOPATH=$HOME/go
+  export PATH=$PATH:$GOPATH/bin
+fi
 
 # pnpm
-export PNPM_HOME="$HOME/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
-
-export EXA_COLORS="\
-uu=36:\
-gu=37:\
-sn=32:\
-sb=32:\
-da=34:\
-ur=34:\
-uw=35:\
-ux=36:\
-ue=36:\
-gr=34:\
-gw=35:\
-gx=36:\
-tr=34:\
-tw=35:\
-tx=36:"
-
-alias xl='exa -lag --icons --color=always'
+if [ -d "$HOME/.local/share/pnpm" ]; then
+  export PNPM_HOME="$HOME/.local/share/pnpm"
+  case ":$PATH:" in
+    *":$PNPM_HOME:"*) ;;
+    *) export PATH="$PNPM_HOME:$PATH" ;;
+  esac
+fi
 
 # Turso
-export PATH="$PATH:$HOME/.turso"
+if [ -d "$HOME/.turso" ]; then
+  export PATH="$PATH:$HOME/.turso"
+fi
 
 function run-tmux-sessionizer {
   ~/dotfiles/scripts/tmux-sessionizer-zsh;
@@ -149,14 +138,19 @@ function run-tmux-sessionizer {
 }
 zle -N run-tmux-sessionizer
 bindkey '^f' run-tmux-sessionizer
-. $HOME/.cargo/env
+
+if [ -d "$HOME/.cargo" ]; then
+  . $HOME/.cargo/env
+fi
 
 # bun completions
 [ -s "/home/madman/.bun/_bun" ] && source "/home/madman/.bun/_bun"
 
 # bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+if [ -d "$HOME/.bun" ]; then
+  export BUN_INSTALL="$HOME/.bun"
+  export PATH="$BUN_INSTALL/bin:$PATH"
+fi
 
 
 #####################
