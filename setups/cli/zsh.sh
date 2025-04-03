@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Install zsh
-sudo apt install zsh -y
+sudo apt install zsh unzip -y
 
 # Install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
