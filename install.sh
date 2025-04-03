@@ -5,6 +5,9 @@ echo "#########################"
 echo "## Dotfiles Installer ##"
 echo "#########################"
 
+echo "All arguments: $@"
+exit 0
+
 echo "################### UPDATE SYSTEM ###################"
 sudo apt update
 sudo apt upgrade -y
