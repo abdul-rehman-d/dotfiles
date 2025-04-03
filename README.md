@@ -11,9 +11,10 @@ sudo apt install curl -y
 
 If you want cli-only installation, run:
 ```bash
-curl -L https://raw.githubusercontent.com/abdul-rehman-d/dotfiles/main/install.sh | bash -s -- --cli-only
+curl -L https://raw.githubusercontent.com/abdul-rehman-d/dotfiles/refs/heads/main/install.sh | bash -s -- --cli-only
 ```
 
+Or else:
 ```bash
-curl -L https://raw.githubusercontent.com/abdul-rehman-d/dotfiles/main/install.sh | bash
+curl -L https://raw.githubusercontent.com/abdul-rehman-d/dotfiles/refs/heads/main/install.sh | bash
 ```
