@@ -14,7 +14,7 @@ If you want cli-only installation, run:
 curl -L https://raw.githubusercontent.com/abdul-rehman-d/dotfiles/refs/heads/main/install.sh | bash -s -- --cli-only
 ```
 
-Or else:
+Or else, run:
 ```bash
 curl -L https://raw.githubusercontent.com/abdul-rehman-d/dotfiles/refs/heads/main/install.sh | bash
 ```
