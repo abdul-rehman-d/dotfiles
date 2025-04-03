@@ -15,5 +15,4 @@ curl -L https://raw.githubusercontent.com/abdul-rehman-d/dotfiles/refs/heads/mai
 
 ## Todo
 - [ ] Fix git and ssh configuration
-- [ ] Change login shell
 - [ ] CLI Only functionality
