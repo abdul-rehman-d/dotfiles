@@ -5,14 +5,6 @@ echo "#########################"
 echo "## Dotfiles Installer ##"
 echo "#########################"
 
-echo "All arguments: $@"
-if [[ "$1" == "--cli-only" ]]; then
-	echo "Running in CLI only mode. Skipping GUI setup."
-else
-	echo "Running in full mode. Setting up GUI as well."
-fi
-exit 0
-
 echo ""
 echo "################### UPDATE SYSTEM ###################"
 sudo apt update
@@ -43,18 +35,21 @@ for file in ~/dotfiles/setups/cli/*; do
 	fi
 done
 
-if [[ "$1" != "--cli-only" ]]; then
-	echo "################### SETTING UP GUI SOFTWARE ###################"
-	# iterate over ~/dotfiles/setups/gui/
-	for file in ~/dotfiles/setups/gui/*; do
-		# check if file is a script
-		if [[ -f $file ]]; then
-		    # check if file is executable
-		    if [[ -x $file ]]; then
-			# run the script
-			echo "Running $file"
-			bash "$file"
-		    fi
-		fi
-	done
+if [[ "$1" == "--cli-only" ]]; then
+	exit 0
 fi
+echo ""
+echo "################### SETTING UP GUI SOFTWARE ###################"
+exit 0
+# iterate over ~/dotfiles/setups/gui/
+for file in ~/dotfiles/setups/gui/*; do
+	# check if file is a script
+	if [[ -f $file ]]; then
+	    # check if file is executable
+	    if [[ -x $file ]]; then
+		# run the script
+		echo "Running $file"
+		bash "$file"
+	    fi
+	fi
+done
