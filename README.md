@@ -4,6 +4,16 @@ This repository contains my dotfiles and configuration files for various applica
 ## Installation
 To install the dotfiles, run the following command in your terminal:
 
+If you dont have `curl` installed, install it first:
+```bash
+sudo apt install curl -y
+```
+
+If you want cli-only installation, run:
+```bash
+curl -L https://raw.githubusercontent.com/abdul-rehman-d/dotfiles/main/install.sh | bash -s -- --cli-only
+```
+
 ```bash
 curl -L https://raw.githubusercontent.com/abdul-rehman-d/dotfiles/main/install.sh | bash
 ```
