@@ -9,3 +9,4 @@ sudo apt install flameshot feh copyq -y
 pip install qtile
 
 ln -s $HOME/dotfiles/qtile $HOME/.config/qtile
+sudo cp $HOME/dotfiles/qtile/qtile.desktop /usr/share/xsessions/
