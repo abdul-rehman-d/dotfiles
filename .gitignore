@@ -8,7 +8,3 @@ qtile/__pycache__
 
 nvim/lazy-lock.json
 
-# I probably wont edit these and local changes are just email and name by the setup script
-gitconfig
-gitconfig-work
-
