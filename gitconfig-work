@@ -1,6 +1,6 @@
 [user]
-	email = "abdulrehman.daniyal@digitalnomadicsolutions.com"
-	name = "Abdul Rehman"
+	email = "<github-work-email-here>"
+	name = "<github-name-here>"
 [push]
 	autoSetupRemote = true
 [http]
