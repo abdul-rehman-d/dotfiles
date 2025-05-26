@@ -730,6 +730,10 @@ require("lazy").setup({
 		opts = {},
 	},
 
+	{
+		"github/copilot.vim",
+	},
+
 	-- Highlight todo, notes, etc in comments
 	{
 		"folke/todo-comments.nvim",
