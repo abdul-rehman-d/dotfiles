@@ -152,6 +152,15 @@ if [ -d "$HOME/.bun" ]; then
   export PATH="$BUN_INSTALL/bin:$PATH"
 fi
 
+if [ -d "/opt/homebrew/opt/openjdk@17" ]; then
+  export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"
+  export CPPFLAGS="-I/opt/homebrew/opt/openjdk@17/include"
+fi
+
+if [ -d "$HOME/Android" ]; then
+  export ANDROID_SDK_ROOT="$HOME/Android"
+  export PATH="$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$ANDROID_SDK_ROOT/platform-tools:$ANDROID_SDK_ROOT/emulator:$PATH"
+fi
 
 #####################
 # ALWAYS AT THE END #
