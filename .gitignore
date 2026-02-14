@@ -8,3 +8,6 @@ qtile/__pycache__
 
 nvim/lazy-lock.json
 
+# ignore macos
+.DS_Store
+
