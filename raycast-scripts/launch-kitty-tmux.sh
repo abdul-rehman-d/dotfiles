@@ -15,6 +15,6 @@ if pgrep tmux > /dev/null; then
     --hold tmux attach;
 else
   open -n "/Applications/kitty.app" --args \
-    --hold tmux;
+    --hold tmux new-session -s "poop" -c "$HOME/dev/personal/poop"
 fi
 

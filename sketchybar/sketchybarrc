@@ -117,7 +117,7 @@ sketchybar --add item clock right \
            --subscribe volume volume_change \
 \
            --add item battery right \
-           --set battery update_freq=120 icon.color=0xffFF79C6 script="$PLUGIN_DIR/battery.sh" \
+           --set battery update_freq=1 icon.color=0xffFF79C6 script="$PLUGIN_DIR/battery.sh" \
            --subscribe battery system_woke power_source_change \
 \
            --add item disk right \
