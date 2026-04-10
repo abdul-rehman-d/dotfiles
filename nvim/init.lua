@@ -256,7 +256,9 @@ require("lazy").setup({
 			vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "[S]earch [H]elp" })
 			vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "[S]earch [K]eymaps" })
 			vim.keymap.set("n", "<leader>sf", function()
-				local ok = pcall(builtin.git_files)
+				local ok = pcall(function()
+					builtin.git_files({ show_untracked = true })
+				end)
 				if not ok then
 					builtin.find_files()
 				end
