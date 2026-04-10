@@ -112,6 +112,9 @@ sketchybar --add item chevron left \
 sketchybar --add item clock right \
            --set clock update_freq=10 icon= icon.color=0xffF1FA8C script="$PLUGIN_DIR/clock.sh" \
 \
+           --add item eastern_time right \
+           --set eastern_time update_freq=10 icon= icon.color=0xffF1FA8C script="TZ='America/New_York' $PLUGIN_DIR/clock.sh" \
+\
            --add item volume right \
            --set volume icon.color=0xffbd93f9 script="$PLUGIN_DIR/volume.sh" \
            --subscribe volume volume_change \

@@ -3,9 +3,8 @@
 PERCENTAGE="$(pmset -g batt | grep -Eo "\d+%" | cut -d% -f1)"
 CHARGING="$(pmset -g batt | grep 'AC Power')"
 
-NORMAL_ICON_COLOR="0xffFF79C6"
-NORMAL_LABEL_COLOR="0xfff8fbf2"
-LOW_BATT_COLOR="0xffff0000"
+NORMAL_BG_COLOR=0xbf282a36
+RED_BG_COLOR=0xaaff0000
 
 if [ "$PERCENTAGE" = "" ]; then
   exit 0
@@ -27,16 +26,18 @@ if [[ "$CHARGING" != "" ]]; then
   ICON=""
 fi
 
-ICON_COLOR="$NORMAL_ICON_COLOR"
-LABEL_COLOR="$NORMAL_LABEL_COLOR"
-
-if [[ "$CHARGING" = "" ]] && [ "$PERCENTAGE" -lt 10 ]; then
-  if [ $(( $(date +%s) % 2 )) -eq 0 ]; then
-    ICON_COLOR="$LOW_BATT_COLOR"
-    LABEL_COLOR="$LOW_BATT_COLOR"
+if [ "$PERCENTAGE" -lt 10 ]; then
+  if [[ "$CHARGING" = "" ]]; then
+    if [ $(( $(date +%s) % 2 )) -eq 0 ]; then
+      sketchybar --bar color="${RED_BG_COLOR}"
+    else
+      sketchybar --bar color="${NORMAL_BG_COLOR}"
+    fi
+  elif [ $(sketchybar --query bar | jq .color) -eq $RED_BG_COLOR ]; then
+    sketchybar --bar color="${NORMAL_BG_COLOR}"
   fi
 fi
 
 # The item invoking this script (name $NAME) will get its icon and label
 # updated with the current battery status
-sketchybar --set "$NAME" icon="$ICON" label="${PERCENTAGE}%" icon.color="$ICON_COLOR" label.color="$LABEL_COLOR"
+sketchybar --set "$NAME" icon="$ICON" label="${PERCENTAGE}%"
