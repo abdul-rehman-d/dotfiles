@@ -24,16 +24,16 @@ sketchybar --bar position=top height=30 blur_radius=20 color=0xbf282a36
 default=(
   padding_left=5
   padding_right=5
-  icon.font="Hack Nerd Font:Bold:12.0"
-  label.font="Hack Nerd Font:Bold:10.0"
+  icon.font="Hack Nerd Font:Bold:14.0"
+  label.font="Hack Nerd Font:Bold:12.0"
   icon.color=0xfff8fbf2
   label.color=0xfff8fbf2
   icon.padding_left=6
   icon.padding_right=2
   label.padding_left=2
   label.padding_right=6
-  background.color=0xff6272A4
-  background.corner_radius=2
+  background.color=0x40ffffff
+  background.corner_radius=5
   background.height=20
   background.drawing=on
 )
@@ -65,11 +65,26 @@ sketchybar --default "${default[@]}"
 
 sketchybar --add event aerospace_workspace_change
 
-sketchybar --add item aerospace left \
-            --set aerospace icon= icon.color=0xffBD93F9 \
-            background.height=2 background.y_offset=-8 background.color=0xffBD93F9 background.drawing=on \
-            script="$PLUGIN_DIR/aerospace.sh" \
-            --subscribe aerospace aerospace_workspace_change
+sketchybar --add item aerospace_icon left \
+            --set aerospace_icon icon= icon.color=0xffBD93F9 label.drawing=off background.drawing=off
+
+WORKSPACES=("1" "2" "3" "4" "5" "6" "7" "8" "9" "P" "S" "T")
+for sid in "${WORKSPACES[@]}"; do
+  sketchybar --add item "space.$sid" left \
+            --set "space.$sid" \
+              icon="$sid" \
+              label.drawing=off \
+              icon.padding_left=7 \
+              icon.padding_right=7 \
+              background.color=0x40ffffff \
+              background.corner_radius=5 \
+              background.height=20 \
+              icon.font="Hack Nerd Font:Bold:12.0" \
+              label.font="Hack Nerd Font:Bold:10.0" \
+              script="$PLUGIN_DIR/aerospace.sh $sid" \
+              click_script="aerospace workspace $sid" \
+            --subscribe "space.$sid" aerospace_workspace_change mouse.entered mouse.exited
+done
 
 # for sid in $(aerospace list-workspaces --all); do
 #     sketchybar --add item space.$sid left \
@@ -93,8 +108,12 @@ sketchybar --add item aerospace left \
 
 sketchybar --add item chevron left \
            --set chevron icon= icon.color=0xffffbb6c label.drawing=off background.drawing=off \
+\
            --add item front_app left \
-           --set front_app icon.drawing=off background.drawing=off script="$PLUGIN_DIR/front_app.sh" \
+           --set front_app \
+            icon.drawing=off \
+            background.drawing=off \
+            script="$PLUGIN_DIR/front_app.sh" \
            --subscribe front_app front_app_switched \
            --subscribe front_app aerospace_workspace_change
 
@@ -110,27 +129,39 @@ sketchybar --add item chevron left \
 # https://felixkratz.github.io/SketchyBar/config/events
 
 sketchybar --add item clock right \
-           --set clock update_freq=10 icon= icon.color=0xffF1FA8C script="$PLUGIN_DIR/clock.sh" \
+           --set clock \
+            update_freq=10 \
+            icon= \
+            icon.color=0xffF1FA8C \
+            background.color=0x40ffffff \
+            background.corner_radius=5 \
+            script="$PLUGIN_DIR/clock.sh" \
 \
            --add item eastern_time right \
-           --set eastern_time update_freq=10 icon= icon.color=0xffF1FA8C script="TZ='America/New_York' $PLUGIN_DIR/clock.sh" \
+           --set eastern_time \
+            update_freq=10 \
+            icon= \
+            icon.color=0xffF1FA8C \
+            background.color=0x40ffffff \
+            background.corner_radius=5 \
+            script="TZ='America/New_York' $PLUGIN_DIR/clock.sh" \
 \
            --add item volume right \
-           --set volume icon.color=0xffbd93f9 script="$PLUGIN_DIR/volume.sh" \
+           --set volume \
+            icon.color=0xffbd93f9 \
+            background.color=0x40ffffff \
+            background.corner_radius=5 \
+            script="$PLUGIN_DIR/volume.sh" \
            --subscribe volume volume_change \
 \
            --add item battery right \
-           --set battery update_freq=1 icon.color=0xffFF79C6 script="$PLUGIN_DIR/battery.sh" \
-           --subscribe battery system_woke power_source_change \
-\
-           --add item disk right \
-           --set disk update_freq=120 icon= icon.color=0xffFFB86C script="$PLUGIN_DIR/disk.sh" \
-\
-           --add item ram right \
-           --set ram update_freq=2 icon= icon.color=0xff50FA7B script="$PLUGIN_DIR/ram.sh" \
-\
-           --add item cpu right \
-           --set cpu update_freq=2 icon= icon.color=0xff8BE9FD script="$PLUGIN_DIR/cpu.sh"
+           --set battery \
+            update_freq=1 \
+            icon.color=0xffFF79C6 \
+            background.color=0x40ffffff \
+            background.corner_radius=5 \
+            script="$PLUGIN_DIR/battery.sh" \
+           --subscribe battery system_woke power_source_change
 
 ##### Force all scripts to run the first time (never do this in a script) #####
 sketchybar --update

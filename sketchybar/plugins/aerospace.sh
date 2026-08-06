@@ -1,23 +1,39 @@
 #!/usr/bin/env bash
 
-# is_active=false
-# is_empty=true
-#
-# FOCUSED_WORKSPACE=$(aerospace list-workspaces --focused)
-#
-# if [ "$1" = "$FOCUSED_WORKSPACE" ]; then
-#     is_active=true
-# fi
-#
-# if [ `aerospace list-windows --workspace $1 | wc -l` != "0" ]; then
-#     is_empty=false
-# fi
+WORKSPACE="$1"
 
-
-# if no focused_workspace is set, set it using command `aerospace list-workspaces --focused`
 if [ -z "$FOCUSED_WORKSPACE" ]; then
   FOCUSED_WORKSPACE=$(aerospace list-workspaces --focused)
 fi
 
-sketchybar --set $NAME label=$FOCUSED_WORKSPACE
+if [ "$SENDER" = "mouse.entered" ]; then
+  if [ "$WORKSPACE" != "$FOCUSED_WORKSPACE" ]; then
+    APPS=$(aerospace list-windows --workspace "$WORKSPACE" --format "%{app-name}" | awk 'NF && !seen[$0]++ { if (out) out=out ", " $0; else out=$0 } END { print out }')
 
+    if [ -z "$APPS" ]; then
+      APPS="No windows"
+    fi
+
+    sketchybar --set front_app label="$APPS"
+  fi
+fi
+
+if [ "$SENDER" = "mouse.exited" ]; then
+  CURRENT_APP=$(aerospace list-windows --focused --format "%{app-name}" 2>/dev/null)
+  if [ -z "$CURRENT_APP" ]; then
+    CURRENT_APP="No windows"
+  fi
+  sketchybar --set front_app label="$CURRENT_APP"
+fi
+
+if [ "$WORKSPACE" = "$FOCUSED_WORKSPACE" ]; then
+  sketchybar --set "$NAME" \
+    background.drawing=on \
+    background.color=0xffBD93F9 \
+    icon.color=0xff282a36
+else
+  sketchybar --set "$NAME" \
+    background.drawing=on \
+    background.color=0x40ffffff \
+    icon.color=0xfff8fbf2
+fi
