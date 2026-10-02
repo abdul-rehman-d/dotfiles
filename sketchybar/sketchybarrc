@@ -68,7 +68,7 @@ sketchybar --add event aerospace_workspace_change
 sketchybar --add item aerospace_icon left \
             --set aerospace_icon icon= icon.color=0xffBD93F9 label.drawing=off background.drawing=off
 
-WORKSPACES=("chat" "term" "web" "code" "work:1" "work:2" "misc:1" "misc:2" "misc:3" "parsec" "slack" "netflix" "jellyfin")
+WORKSPACES=("chat" "term" "web" "code" "work:1" "work:2" "misc:1" "misc:2" "misc:3" "parsec" "slack" "netflix" "jellyfin" "farm")
 for sid in "${WORKSPACES[@]}"; do
   sketchybar --add item "space.$sid" left \
             --set "space.$sid" \
@@ -157,6 +157,15 @@ sketchybar --add item clock right \
             background.corner_radius=5 \
             script="$PLUGIN_DIR/volume.sh" \
            --subscribe volume volume_change \
+\
+           --add item timer right \
+           --set timer \
+            update_freq=1 \
+            icon.color=0xff50FA7B \
+            background.color=0x40ffffff \
+            background.corner_radius=5 \
+            script="$PLUGIN_DIR/timer.sh" \
+            click_script="$PLUGIN_DIR/timer.sh toggle" \
 \
            --add item battery right \
            --set battery \
